@@ -13,7 +13,7 @@ def tail(file):
         if len(buffer) > TAIL_SIZE:
             buffer.pop(0)
     for line in buffer:
-        click.echo(line)
+        click.echo(line, nl=False)
 
 
 @click.command()
@@ -22,9 +22,9 @@ def main(file):
     if len(file) == 1:
         tail(file[0])
     else:
-        for index, file in enumerate(file):
-            click.echo(f"==> {file} <==")
-            tail(file)
+        for index, cur_file in enumerate(file):
+            click.echo(f"==> {cur_file.name} <==")
+            tail(cur_file)
             if index + 1 != len(file):
                 click.echo()
 

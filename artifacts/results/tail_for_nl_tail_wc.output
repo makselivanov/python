@@ -1,0 +1,35 @@
+==> ../../src/nl.py <==
+    while True:
+        line = file.readline()
+        if not line:
+            break
+        index += 1
+        click.echo(f"{index:6d}\t{line}", nl=False)
+
+
+if __name__ == '__main__':
+    main()
+
+==> ../../src/tail.py <==
+    else:
+        for index, cur_file in enumerate(file):
+            click.echo(f"==> {cur_file.name} <==")
+            tail(cur_file)
+            if index + 1 != len(file):
+                click.echo()
+
+
+if __name__ == '__main__':
+    main()
+
+==> ../../src/wc.py <==
+    mx = max(newline, word, byte)
+    length = max(1 if (mx == 0) else math.floor(math.log10(mx)) + 1, length)
+    for result in results:
+        click.echo(f"{result[0]:{length}d}{result[1]:{length}d}{result[2]:{length}d} total")
+    if len(file) > 1:
+        click.echo(f"{newline:{length}d}{word:{length}d}{byte:{length}d} total")
+
+
+if __name__ == '__main__':
+    main()

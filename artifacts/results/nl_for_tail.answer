@@ -1,0 +1,33 @@
+     1	import click
+     2	
+     3	TAIL_SIZE = 10
+     4	
+     5	
+     6	def tail(file):
+     7	    buffer = []
+     8	    while True:
+     9	        line = file.readline()
+    10	        if not line:
+    11	            break
+    12	        buffer.append(line)
+    13	        if len(buffer) > TAIL_SIZE:
+    14	            buffer.pop(0)
+    15	    for line in buffer:
+    16	        click.echo(line, nl=False)
+    17	
+    18	
+    19	@click.command()
+    20	@click.argument('file', type=click.File('r'), nargs=-1)
+    21	def main(file):
+    22	    if len(file) == 1:
+    23	        tail(file[0])
+    24	    else:
+    25	        for index, cur_file in enumerate(file):
+    26	            click.echo(f"==> {cur_file.name} <==")
+    27	            tail(cur_file)
+    28	            if index + 1 != len(file):
+    29	                click.echo()
+    30	
+    31	
+    32	if __name__ == '__main__':
+    33	    main()

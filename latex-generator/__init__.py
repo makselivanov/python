@@ -1,0 +1,1 @@
+from .latex_generator import latex_generator_for_table, latex_generator_for_images

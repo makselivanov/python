@@ -1,8 +1,11 @@
+import os.path
+
+
 def row_to_string(row):
     return " & ".join(list(map(str, row)))
 
 
-def generate_latex_string_for_table(table: list[list]) -> str:
+def latex_generator_for_table(table: list[list]) -> str:
     max_len = max(map(len, table))
     template = """\\begin{{center}}
     \\begin{{tabular}} {}
@@ -17,14 +20,8 @@ def generate_latex_string_for_table(table: list[list]) -> str:
     return final_latex_string_for_table
 
 
-def latex_generator_for_table(table: list[list]) -> str:
-    template = """\\documentclass{{article}}
-\\begin{{document}}
-    {}
-\\end{{document}}
-"""
-
-    latex_string_for_table = generate_latex_string_for_table(table)
-
-    final_latex_string_for_document = template.format(latex_string_for_table)
-    return final_latex_string_for_document
+def latex_generator_for_images(image_path: str) -> str:
+    file_name_with_extension = os.path.basename(image_path)
+    file_name = os.path.splitext(file_name_with_extension)[0]
+    image_template = f"\\includegraphics{{ {file_name} }}"
+    return image_template

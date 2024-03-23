@@ -3,10 +3,10 @@ from latex_generator import latex_generator_for_table, latex_generator_for_image
 
 def main():
     test_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    image_path = "./artifacts/images/sadcat.png"
+    image_path = "../images/sadcat.png"
     tex_string = f"""\\documentclass{{article}}
 \\usepackage{{graphicx}}
-\\graphicspath{{ {{./images/}} }}
+\\graphicspath{{ {{../images/}} }}
 
 \\begin{{document}}
 {latex_generator_for_table(test_list)}

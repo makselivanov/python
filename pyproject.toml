@@ -3,7 +3,9 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 [project]
 name = "latex-generator-makselivanov"
+
 dynamic = ["dependencies"]
+version = "0.0.1"
 authors = [
     { name="Makar Selivanov", email="makar.selivanov@gmail.com" }
 ]
@@ -15,5 +17,7 @@ classifiers = [
 ]
 [project.urls]
 Homepage = "https://github.com/makselivanov/python/tree/02-latex"
+[tool.setuptools]
+packages = ["latex_generator_makselivanov"]
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}

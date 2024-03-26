@@ -3,7 +3,7 @@ import numpy as np
 
 class HashMatrixMixin:
     def __hash__(self):
-        return sum([sum(row) for row in self.matrix])
+        return int(sum([sum(row) for row in self.matrix]))
 
 
 _cache = dict()

@@ -41,10 +41,11 @@ class MathMixin(np.lib.mixins.NDArrayOperatorsMixin):
 class BeautyPrintMixin:
     """I am printing a beautiful string"""
     def __str__(self):
+        joiner = "\n\t"
         return f"""Name: {self.__class__}
 Doc: {self.__doc__} 
 Attributes: 
-\t{"\n\t".join(list(map(lambda pr: str(pr[0]) + " -> " + str(pr[1]), self.__dict__.items())))}
+\t{joiner.join(list(map(lambda pr: str(pr[0]) + " -> " + str(pr[1]), self.__dict__.items())))}
 """
 
 

@@ -1,7 +1,20 @@
 import numpy as np
 
 
-class Matrix:
+class HashMatrixMixin:
+    def __hash__(self):
+        return sum([sum(row) for row in self.matrix])
+
+
+_cache = dict()
+
+
+def Cache_clear():
+    _cache.clear()
+
+
+class Matrix(HashMatrixMixin):
+    """Common Matrix"""
     n: int
     m: int
     matrix: list[list[float]]
@@ -34,9 +47,12 @@ class Matrix:
             raise ValueError("__matmul__ other is not a matrix")
         if self.m != other.n:
             raise ValueError("__matmul__ got incorrect shapes")
-        result = [[sum([self.matrix[i][k] * other.matrix[k][j] for k in range(self.m)]) for j in range(other.m)] for i in range(self.n)]
-        return Matrix(result)
+        hash_1 = hash(self)
+        hash_2 = hash(other)
+        if (hash_1, hash_2) not in _cache:
+            result = [[sum([self.matrix[i][k] * other.matrix[k][j] for k in range(self.m)]) for j in range(other.m)] for i in range(self.n)]
+            _cache[(hash_1, hash_2)] = Matrix(result)
+        return _cache[(hash_1, hash_2)]
 
     def __str__(self):
         return str(self.matrix)
-    
